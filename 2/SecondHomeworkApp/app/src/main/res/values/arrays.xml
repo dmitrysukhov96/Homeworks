@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="who_will_see_number_entries">
+        <item>Все</item>
+        <item>Мои контакты</item>
+        <item>Никто</item>
+    </string-array>
+    <string-array name="who_will_see_number_values">
+        <item>all</item>
+        <item>my_contacts</item>
+        <item>nobody</item>
+    </string-array>
+</resources>
