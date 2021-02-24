@@ -3,47 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment2"
+    tools:context=".SecondFragment"
     android:background="@color/white"
-    android:layout_margin="10dp"
-    android:tag="@string/fragment2tag">
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_marginTop="100dp">
 
         <EditText
-            android:id="@+id/editText_fragment2"
-            android:layout_width="0dp"
+            android:id="@+id/edittext_second_fragment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_weight="1"
             android:ems="10"
             android:hint="@string/enterText"
             android:inputType="text" />
 
         <Button
-            android:id="@+id/button_sendToFragment1"
+            android:id="@+id/button_send_to_first_fragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:onClick="sendTextToFragment"
-            android:text="@string/send" />
+            android:text="@string/send"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView_fragment2_textFromF1"
+        android:id="@+id/textview_second_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:textSize="20sp"/>
 
     <TextView
-        android:id="@+id/textView_fragment2_name"
+        android:id="@+id/textview_second_fragment_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_margin="10dp"
-        android:text="@string/fragment_2" />
+        android:text="@string/second_fragment" />
 </FrameLayout>

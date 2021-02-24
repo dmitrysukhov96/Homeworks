@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">SecondHomeworkApp</string>
+    <string name="first_fragment">Первый Фрагмент</string>
+    <string name="second_fragment">Второй Фрагмент</string>
+    <string name="first_newline_fragment">Первый\nФрагмент</string>
+    <string name="second_newline_fragment">Второй\nФрагмент</string>
+    <string name="send">Отправить</string>
+    <string name="enterText">Введите текст</string>
+    <string name="about">О приложении</string>
+    <string name="settings">Настройки</string>
+    <string name="cancel">Отмена</string>
+    <string name="enterSomeText">Введите текст</string>
+    <string name="createdBy">Автор: Дмитрий Сухов</string>
+    <string name="night_mode">Ночной режим</string>
+    <string name="night_mode_description">когда всё темное :)</string>
+    <string name="show_login_title">Показать логин</string>
+    <string name="your_login_title">Ваш логин</string>
+    <string name="ok">Ясно</string>
+    <string name="undo">Отменить?</string>
+    <string name="settings_changed">Настройки изменены</string>
+    <string name="who_will_see_number_title">Кто видит мой номер?</string>
+</resources>

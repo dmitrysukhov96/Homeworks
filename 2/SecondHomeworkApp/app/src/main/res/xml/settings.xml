@@ -4,21 +4,20 @@
     <EditTextPreference
         android:key="login"
         android:title="@string/your_login_title"
-        app:useSimpleSummaryProvider="true"
-        />
+        app:useSimpleSummaryProvider="true" />
     <CheckBoxPreference
-        android:key="show login"
+        android:key="show_login"
         android:title="@string/show_login_title" />
     <SwitchPreference
         android:key="switch_night_mode"
-        android:title="@string/night_mode"
-        android:summary="@string/night_mode_description"/>
+        android:summary="@string/night_mode_description"
+        android:title="@string/night_mode" />
 
     <ListPreference
         app:defaultValue="my_contacts"
         app:entries="@array/who_will_see_number_entries"
         app:entryValues="@array/who_will_see_number_values"
         app:key="who_will_see_number"
-        app:title="Кто видит мой номер телефона?"
-        app:useSimpleSummaryProvider="true"/>
+        app:title="@string/who_will_see_number_title"
+        app:useSimpleSummaryProvider="true" />
 </PreferenceScreen>

@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment1"
+    tools:context=".SecondFragment"
     android:background="@color/white"
-    android:layout_margin="10dp"
-    android:tag="@string/fragment1tag">
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +13,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText_fragment1"
+            android:id="@+id/edittext_second_fragment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -24,27 +23,25 @@
             android:inputType="text" />
 
         <Button
-            android:id="@+id/button_sendToFragment2"
+            android:id="@+id/button_send_to_first_fragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:onClick="sendTextToFragment"
             android:text="@string/send" />
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView_fragment1_textFromF2"
+        android:id="@+id/textview_second_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
     <TextView
-        android:id="@+id/textView_fragment1_name"
+        android:id="@+id/textview_second_fragment_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_margin="10dp"
-        android:text="@string/fragment_1"/>
-
+        android:text="@string/second_fragment" />
 </FrameLayout>

@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment;
 
 public class AboutFragment extends DialogFragment implements MainActivity.AboutFragmentCallback {
 
+    public static final String TAG = "AboutDialogFragment";
     String textForToast;
     EditText editText;
 
@@ -27,8 +28,6 @@ public class AboutFragment extends DialogFragment implements MainActivity.AboutF
                 })
                 .create();
     }
-
-    public static String TAG = "AboutDialogFragment";
 
     @Override
     public void passTextToToast() {
