@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.SecondViewHolder>{
+public class RecyclerAdapterDetails extends RecyclerView.Adapter<RecyclerAdapterDetails.SecondViewHolder>{
 
     Context context;
     private final String[] stringArray1;
@@ -17,7 +17,7 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.SecondView
     private final String[] stringArray3;
     int[] images;
 
-    public SecondAdapter(Context ct, String[] s1, String[] s2, String[] s3, int[] img) {
+    public RecyclerAdapterDetails(Context ct, String[] s1, String[] s2, String[] s3, int[] img) {
         context = ct;
         stringArray1 = s1;
         stringArray2 = s2;
@@ -27,14 +27,14 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.SecondView
 
     @NonNull
     @Override
-    public SecondAdapter.SecondViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public RecyclerAdapterDetails.SecondViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.cardview_weather, viewGroup, false);
-        return new SecondAdapter.SecondViewHolder(view);
+        return new RecyclerAdapterDetails.SecondViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(SecondAdapter.SecondViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(RecyclerAdapterDetails.SecondViewHolder viewHolder, final int position) {
         viewHolder.textViewDetailsTime.setText(stringArray1[position]);
         viewHolder.textViewDetailsWeather.setText(stringArray2[position]);
         viewHolder.textViewDetailsWindSpeed.setText(stringArray3[position]);

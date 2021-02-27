@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.dmitrysukhov.thirdhomework.FirstAdapter;
+import com.dmitrysukhov.thirdhomework.RecyclerAdapterMain;
 import com.dmitrysukhov.thirdhomework.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -43,8 +43,8 @@ public class WeatherMainFragment extends Fragment {
         stringArray2 = getResources().getStringArray(R.array.weather_main);
         stringArray3 = getResources().getStringArray(R.array.temperature_main);
 
-        FirstAdapter firstAdapter = new FirstAdapter(getActivity(), stringArray1, stringArray2, stringArray3, images);
-        recyclerView.setAdapter(firstAdapter);
+        RecyclerAdapterMain recyclerAdapterMain = new RecyclerAdapterMain(getActivity(), stringArray1, stringArray2, stringArray3, images);
+        recyclerView.setAdapter(recyclerAdapterMain);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         LinearLayout linearLayoutMainMore = view.findViewById(R.id.linearLayout_main_fragment_more_details);

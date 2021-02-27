@@ -4,18 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dmitrysukhov.thirdhomework.GridViewAdapter;
 import com.dmitrysukhov.thirdhomework.R;
-import com.dmitrysukhov.thirdhomework.SecondAdapter;
-import com.google.android.material.tabs.TabLayout;
+import com.dmitrysukhov.thirdhomework.RecyclerAdapterDetails;
 
 public class WeatherDetailsFragment extends Fragment {
 
@@ -43,8 +42,11 @@ public class WeatherDetailsFragment extends Fragment {
         stringArray2 = getResources().getStringArray(R.array.weather_details);
         stringArray3 = getResources().getStringArray(R.array.wind_speed_details);
 
-        SecondAdapter secondAdapter = new SecondAdapter(getActivity(), stringArray1, stringArray2, stringArray3, images);
-        recyclerView.setAdapter(secondAdapter);
+        RecyclerAdapterDetails recyclerAdapterDetails = new RecyclerAdapterDetails(getActivity(), stringArray1, stringArray2, stringArray3, images);
+        recyclerView.setAdapter(recyclerAdapterDetails);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false));
+        GridView gridview = getView().findViewById(R.id.grid_view_details);
+        if (gridview!=null){
+        gridview.setAdapter(new GridViewAdapter(getActivity()));}
     }
 }

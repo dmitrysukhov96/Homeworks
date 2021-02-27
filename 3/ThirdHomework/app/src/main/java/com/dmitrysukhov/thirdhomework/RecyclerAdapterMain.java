@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.FirstViewHolder> {
+public class RecyclerAdapterMain extends RecyclerView.Adapter<RecyclerAdapterMain.FirstViewHolder> {
 
     Context context;
     private final String[] stringArray1;
@@ -19,7 +19,7 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.FirstViewHol
     int[] images;
     private String textCircle = " • ";
 
-    public FirstAdapter(Context ct, String[] s1, String[] s2, String[] s3, int[] img) {
+    public RecyclerAdapterMain(Context ct, String[] s1, String[] s2, String[] s3, int[] img) {
         context = ct;
         stringArray1 = s1;
         stringArray2 = s2;
