@@ -31,7 +31,6 @@ public class WeatherMainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_weather_main, container, false);
     }
 
@@ -40,9 +39,9 @@ public class WeatherMainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recycler_view_main_fragment_recent_days);
 
-        stringArray1 = getResources().getStringArray(R.array.day);
-        stringArray2 = getResources().getStringArray(R.array.weather);
-        stringArray3 = getResources().getStringArray(R.array.temperature);
+        stringArray1 = getResources().getStringArray(R.array.day_main);
+        stringArray2 = getResources().getStringArray(R.array.weather_main);
+        stringArray3 = getResources().getStringArray(R.array.temperature_main);
 
         FirstAdapter firstAdapter = new FirstAdapter(getActivity(), stringArray1, stringArray2, stringArray3, images);
         recyclerView.setAdapter(firstAdapter);

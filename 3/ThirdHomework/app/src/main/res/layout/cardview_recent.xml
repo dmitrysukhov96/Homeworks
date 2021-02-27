@@ -36,7 +36,6 @@
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/image_view_card_view_icon_weather"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:text="Сегодня ясно"
             android:textColor="@color/white"/>
 
         <TextView
@@ -46,8 +45,7 @@
             android:textColor="@color/white"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/text_view_card_day"
-            card_view:layout_constraintTop_toTopOf="parent"
-            tools:text="Сегодня ясно" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_view_card_temperature"
@@ -57,7 +55,6 @@
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:text="-2/4"
             android:textColor="@color/white"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -31,7 +31,7 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.FirstViewHol
     @Override
     public FirstViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.cardview_first, viewGroup, false);
+        View view = inflater.inflate(R.layout.cardview_recent, viewGroup, false);
         return new FirstViewHolder(view);
     }
 

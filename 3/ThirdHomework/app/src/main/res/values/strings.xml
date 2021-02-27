@@ -12,22 +12,65 @@
     <string name="more">Подробнее</string>
     <string name="sun">sun</string>
     <string name="to_be_continued">To Be Continued...</string>
+    <string name="feels">Ощущается</string>
+    <string name="example_temperature">-2℃</string>
+    <string name="humidity">Влажность</string>
+    <string name="example_humidity">50%</string>
+    <string name="сhance_of_rain">Вероятность дождя</string>
+    <string name="example_chance_of_rain">0%</string>
+    <string name="pressure">ДАВЛЕНИЕ</string>
+    <string name="example_pressure">1031,00hPa</string>
+    <string name="wind_speed">Скорость ветра</string>
+    <string name="example_wind_speed">3,7 км/ч</string>
+    <string name="index_uf">Индекс УФ</string>
+    <string name="example_index_uf">2</string>
+    <string name="sunrise_example">Восход 06:55</string>
+    <string name="sunset_example">Закат 17:28</string>
+    <string name="air_quality_index">Индекс качества воздуха</string>
+    <string name="example_air_quality">41</string>
+    <string name="info_by">Данные предоставлены</string>
+    <string name="accuweather">accuweather</string>
+    <string name="string_accuweather" />
 
-    <string-array name="day">
+    <string-array name="day_main">
         <item>Сегодня</item>
         <item>Завтра</item>
         <item>Вс</item>
     </string-array>
 
-    <string-array name="weather">
+    <string-array name="weather_main">
         <item>Ветренно</item>
         <item>Облачно</item>
         <item>Ясно</item>
     </string-array>
 
-    <string-array name="temperature">
+    <string-array name="temperature_main">
         <item>-2°/-6°</item>
         <item>2°/0°</item>
         <item>4°/-2°</item>
+    </string-array>
+
+    <string-array name="time_details">
+        <item>Сейчас</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>17:28</item>
+        <item>18:00</item>
+    </string-array>
+
+    <string-array name="weather_details">
+        <item>-2°</item>
+        <item>-2°</item>
+        <item>-3°</item>
+        <item>Закат</item>
+        <item>-4°</item>
+    </string-array>
+
+    <string-array name="wind_speed_details">
+        <item>3.7 км/ч</item>
+        <item>4.1 км/ч</item>
+        <item>4.2 км/ч</item>
+        <item>4.2 км/ч</item>
+        <item>4.3 км/ч</item>
     </string-array>
 </resources>
