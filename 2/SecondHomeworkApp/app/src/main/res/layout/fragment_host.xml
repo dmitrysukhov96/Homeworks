@@ -4,5 +4,5 @@
     android:id="@+id/framelayout_host_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HostFragment"
+    tools:context=".main.fragments.HostFragment"
     android:background="@color/host_fragment_layout_color" />

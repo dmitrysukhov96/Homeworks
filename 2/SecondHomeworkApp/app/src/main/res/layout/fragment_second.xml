@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondFragment"
+    tools:context=".main.fragments.SecondFragment"
     android:background="@color/white"
     android:layout_margin="10dp">
 
@@ -14,7 +14,7 @@
         android:layout_marginTop="100dp">
 
         <EditText
-            android:id="@+id/edittext_second_fragment"
+            android:id="@+id/edit_text_second_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -33,14 +33,14 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textview_second_fragment"
+        android:id="@+id/text_view_second_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"/>
 
     <TextView
-        android:id="@+id/textview_second_fragment_name"
+        android:id="@+id/text_view_second_fragment_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

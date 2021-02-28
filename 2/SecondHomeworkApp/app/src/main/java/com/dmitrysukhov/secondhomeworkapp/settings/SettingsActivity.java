@@ -1,11 +1,15 @@
-package com.dmitrysukhov.secondhomeworkapp;
+package com.dmitrysukhov.secondhomeworkapp.settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.dmitrysukhov.secondhomeworkapp.R;
+
 public class SettingsActivity extends AppCompatActivity {
+
+    public static final String MESSAGE_TAG = "messageForAlert";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frameLayout_settings_container, new SettingsFragment(), SettingsFragment.TAG)
+                    .add(R.id.frameLayout_settings_container, new SettingsFragment(), SettingsFragment.SETTINGS_FRAGMENT_TAG)
                     .commit();
         }
     }
@@ -23,10 +27,10 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager()
-                .findFragmentByTag(SettingsFragment.TAG);
+                .findFragmentByTag(SettingsFragment.SETTINGS_FRAGMENT_TAG);
         String resultsOfSettings = settingsFragment.returnResults();
         Intent intent = new Intent();
-        intent.putExtra("messageForAlert", resultsOfSettings);
+        intent.putExtra(MESSAGE_TAG, resultsOfSettings);
         setResult(RESULT_OK, intent);
         super.onBackPressed();
         finish();

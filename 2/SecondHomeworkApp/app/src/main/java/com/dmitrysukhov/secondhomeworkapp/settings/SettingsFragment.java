@@ -1,8 +1,9 @@
-package com.dmitrysukhov.secondhomeworkapp;
+package com.dmitrysukhov.secondhomeworkapp.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.CheckBoxPreference;
@@ -10,12 +11,14 @@ import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
+
+import com.dmitrysukhov.secondhomeworkapp.R;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public static final String TAG = "settingsFragment";
+    public static final String SETTINGS_FRAGMENT_TAG = "settingsFragment";
     private final String loginTag = "login";
     private final String showLoginTag = "show_login";
     private final String switchNightModeTag = "switch_night_mode";
@@ -49,7 +52,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     }
 
     public String returnResults() {
-        String results = "Изменённые настройки:";
+        String results = getString(R.string.changed_settings);
         if (loginEditTextPreference.getText() != oldLoginValue) {
             results += "\n" + getString(R.string.your_login_title) + ": " + loginEditTextPreference.getText();
         }
@@ -62,7 +65,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         if (whoWillSeeNumbersListPreference.getValue() != oldWhoWillListChosenValue) {
             results += "\n" + getString(R.string.who_will_see_number_title) + ": " + whoWillSeeNumbersListPreference.getValue();
         }
-        if (results.equals("Изменённые настройки:")) {
+        if (results.equals(getString(R.string.changed_settings))) {
             results = null;
         }
         return results;
@@ -71,30 +74,30 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (getView() != null) {
-            Snackbar.make(getView(), R.string.settings_changed, BaseTransientBottomBar.LENGTH_LONG)
-                    .setAction(R.string.undo, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            switch (s) {
-                                case (loginTag): {
-                                    loginEditTextPreference.setText(oldLoginValue);
-                                    break;
-                                }
-                                case (showLoginTag): {
-                                    showLoginCheckBoxPreference.setChecked(oldShowLoginValue);
-                                    break;
-                                }
-                                case (switchNightModeTag): {
-                                    nightModeSwitchPreference.setChecked(oldNightModeValue);
-                                    break;
-                                }
-                                case (whoWillSeeNumberTag): {
-                                    whoWillSeeNumbersListPreference.setValue(oldWhoWillListChosenValue);
-                                    break;
-                                }
-                            }
+            Snackbar.make(getView(), R.string.settings_changed,
+                    BaseTransientBottomBar.LENGTH_LONG).setAction(R.string.undo, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (s) {
+                        case (loginTag): {
+                            loginEditTextPreference.setText(oldLoginValue);
+                            break;
                         }
-                    }).show();
+                        case (showLoginTag): {
+                            showLoginCheckBoxPreference.setChecked(oldShowLoginValue);
+                            break;
+                        }
+                        case (switchNightModeTag): {
+                            nightModeSwitchPreference.setChecked(oldNightModeValue);
+                            break;
+                        }
+                        case (whoWillSeeNumberTag): {
+                            whoWillSeeNumbersListPreference.setValue(oldWhoWillListChosenValue);
+                            break;
+                        }
+                    }
+                }
+            }).show();
         }
     }
 }

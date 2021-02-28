@@ -1,4 +1,4 @@
-package com.dmitrysukhov.secondhomeworkapp;
+package com.dmitrysukhov.secondhomeworkapp.main;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -12,8 +12,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.dmitrysukhov.secondhomeworkapp.about.AboutFragment;
+import com.dmitrysukhov.secondhomeworkapp.R;
+import com.dmitrysukhov.secondhomeworkapp.main.fragments.FirstFragment;
+import com.dmitrysukhov.secondhomeworkapp.main.fragments.HostFragment;
+import com.dmitrysukhov.secondhomeworkapp.main.fragments.SecondFragment;
+import com.dmitrysukhov.secondhomeworkapp.settings.SettingsActivity;
+
+public class MainActivity extends AppCompatActivity implements AboutFragment.AboutFragmentCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,21 +29,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container_main_for_fragments, new HostFragment(), "host_fragment")
+                    .add(R.id.frame_layout_main_activity_container, new HostFragment(), HostFragment.HOST_FRAGMENT_TAG)
                     .commit();
         }
         findViewById(R.id.button_main_first_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HostFragment hostFragment = (HostFragment) getSupportFragmentManager().findFragmentByTag("host_fragment");
-                hostFragment.showFragment("firstFragment");
+                HostFragment hostFragment = (HostFragment) getSupportFragmentManager().findFragmentByTag(HostFragment.HOST_FRAGMENT_TAG);
+                hostFragment.showFragment(FirstFragment.FIRST_FRAGMENT_TAG);
             }
         });
         findViewById(R.id.button_main_second_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HostFragment hostFragment = (HostFragment) getSupportFragmentManager().findFragmentByTag("host_fragment");
-                hostFragment.showFragment("secondFragment");
+                HostFragment hostFragment = (HostFragment) getSupportFragmentManager().findFragmentByTag(HostFragment.HOST_FRAGMENT_TAG);
+                hostFragment.showFragment(SecondFragment.SECOND_FRAGMENT_TAG);
             }
         });
     }
@@ -49,11 +57,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case (R.id.about): {
-                new AboutFragment().show(getSupportFragmentManager(), AboutFragment.TAG);
+            case (R.id.item_menu_about): {
+                new AboutFragment().show(getSupportFragmentManager(), AboutFragment.ABOUT_DIALOG_TAG);
                 break;
             }
-            case (R.id.settings): {
+            case (R.id.item_menu_settings): {
                 mStartForResult.launch(new Intent(this, SettingsActivity.class));
                 break;
             }
@@ -62,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showChangedPreferences(Intent intent) {
-        String messageForAlert = intent.getStringExtra("messageForAlert");
+        String messageForAlert = intent.getStringExtra(SettingsActivity.MESSAGE_TAG);
         if (messageForAlert != null) {
             new AlertDialog.Builder(MainActivity.this)
                     .setMessage(messageForAlert)
@@ -76,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    Intent intent = result.getData();//intent ne null
                     if (result.getData() != null) {
                         showChangedPreferences(result.getData());
                     }
                 }
             });
 
-    public interface AboutFragmentCallback {
-        void passTextToToast();
+    @Override
+    public void passTextToToast(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 }

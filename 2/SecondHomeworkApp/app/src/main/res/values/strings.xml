@@ -19,4 +19,5 @@
     <string name="settings_changed">Settings changed</string>
     <string name="undo">undo?</string>
     <string name="who_will_see_number_title">Who will see my number?</string>
+    <string name="changed_settings">Изменённые настройки:</string>
 </resources>

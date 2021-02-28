@@ -5,4 +5,4 @@
     android:id="@+id/frameLayout_settings_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity" />
+    tools:context=".settings.SettingsActivity" />
