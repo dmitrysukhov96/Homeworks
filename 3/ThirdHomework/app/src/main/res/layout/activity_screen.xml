@@ -18,19 +18,19 @@
 
         <ImageView
             android:id="@+id/image_view_screen_sun"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="@dimen/sun_logo_size"
+            android:layout_height="@dimen/sun_logo_size"
             android:src="@drawable/sun" />
 
         <TextView
             android:id="@+id/text_view_screen_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/weatherapp"
+            android:text="@string/weather_app"
             android:layout_gravity="center"
-            android:textSize="30sp"
+            android:textSize="@dimen/screen_app_name_size"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:layout_margin="10dp"/>
+            android:layout_margin="@dimen/standard_margin"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

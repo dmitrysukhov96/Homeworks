@@ -26,17 +26,14 @@ public class ScreenActivity extends AppCompatActivity {
         rotation.setFillAfter(true);
         imageViewSun.startAnimation(rotation);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!checkGpsPermission()) {
-                    ActivityCompat.requestPermissions(ScreenActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-                } else {
-                    Intent intent = new Intent(ScreenActivity.this, MainActivity.class);
-                    intent.putExtra(GPS_PERMISSION_TAG, checkGpsPermission());
-                    startActivity(intent);
-                    finish();
-                }
+        new Handler().postDelayed(() -> {
+            if (!checkGpsPermission()) {
+                ActivityCompat.requestPermissions(ScreenActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+            } else {
+                Intent intent = new Intent(ScreenActivity.this, MainActivity.class);
+                intent.putExtra(GPS_PERMISSION_TAG, checkGpsPermission());
+                startActivity(intent);
+                finish();
             }
         }, 3000);
     }
@@ -45,7 +42,7 @@ public class ScreenActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("isGpsPermissionGranted", checkGpsPermission());
+        intent.putExtra(GPS_PERMISSION_TAG, checkGpsPermission());
         startActivity(intent);
         finish();
     }

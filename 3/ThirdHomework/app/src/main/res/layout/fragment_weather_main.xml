@@ -17,91 +17,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView_main_fragment_minus"
+        <LinearLayout
+            android:id="@+id/linear_layout_main_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minus"
-            android:textColor="@color/white"
-            android:textSize="100sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView_main_fragment_state"
-            app:layout_constraintEnd_toStartOf="@id/textView_main_fragment_temperature"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView_main_fragment_temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/temperature"
-            android:textColor="@color/white"
-            android:textSize="100sp"
             app:layout_constraintBottom_toTopOf="@+id/textView_main_fragment_state"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
 
-        <TextView
-            android:id="@+id/textView_main_fragment_celsius"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/celsius"
-            android:textColor="@color/white"
-            android:textSize="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textView_main_fragment_temperature"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView_main_fragment_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@string/temperature"
+                android:textColor="@color/white"
+                android:textSize="100sp" />
+
+            <TextView
+                android:id="@+id/textView_main_fragment_celsius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|top"
+                android:layout_marginTop="20dp"
+                android:gravity="top"
+                android:text="@string/celsius"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView_main_fragment_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standard_margin"
             android:text="@string/state"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/card_view_main_fragment_index_of_air_quality"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_main_fragment_temperature" />
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout_main_temperature" />
 
 
-        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <androidx.cardview.widget.CardView
             android:id="@+id/card_view_main_fragment_index_of_air_quality"
-            card_view:cardElevation="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/standard_margin"
             android:orientation="horizontal"
+            app:cardBackgroundColor="@color/white_forty_percent_transparent"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_no_elevation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_main_fragment_state"
-            card_view:cardBackgroundColor="@color/white_25persent_transparent"
-            card_view:cardCornerRadius="20dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView_main_fragment_air_quality"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_air" />
+            app:layout_constraintTop_toBottomOf="@id/textView_main_fragment_state">
 
                 <TextView
                     android:id="@+id/textView_main_fragment_index_of_air_quality"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/little_margin"
                     android:text="@string/ikv41"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+                    android:drawablePadding="@dimen/smallest_padding"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    app:drawableStartCompat="@drawable/ic_air" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -110,7 +93,7 @@
         android:id="@+id/recycler_view_main_fragment_recent_days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/standard_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -119,9 +102,8 @@
         android:id="@+id/linearLayout_main_fragment_more_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_margin="@dimen/standard_margin"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/recycler_view_main_fragment_recent_days"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -132,7 +114,8 @@
             android:layout_gravity="center"
             android:text="@string/more"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="@dimen/little_text"
+            />
 
         <ImageView
             android:layout_width="wrap_content"

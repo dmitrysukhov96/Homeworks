@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="standard_margin">16dp</dimen>
+    <dimen name="standard_padding">16dp</dimen>
+    <dimen name="card_corner_radius">20dp</dimen>
+    <dimen name="card_no_elevation">0dp</dimen>
+    <dimen name="sun_logo_size">200dp</dimen>
+    <dimen name="no_height">0dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="screen_app_name_size">30sp</dimen>
+    <dimen name="little_text">12sp</dimen>
+    <dimen name="normal_text_size">20sp</dimen>
+    <dimen name="little_margin">8dp</dimen>
+    <dimen name="smallest_padding">4dp</dimen>
 </resources>

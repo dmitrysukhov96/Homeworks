@@ -13,15 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.dmitrysukhov.thirdhomework.RecyclerAdapterMain;
+import com.dmitrysukhov.thirdhomework.adapters.RecyclerAdapterMain;
 import com.dmitrysukhov.thirdhomework.R;
-import com.google.android.material.tabs.TabLayout;
 
 public class WeatherMainFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private String[] stringArray1, stringArray2, stringArray3;
-    int[] images = {R.drawable.ic_air, R.drawable.ic_cloud, R.drawable.ic_sun_yellow};
+    public interface MainFragmentCallback {
+        void navigateToSecondFragment();
+    }
+
+    private MainFragmentCallback mainFragmentCallback;
+    int[] imagesAirCloudSun = {R.drawable.ic_air, R.drawable.ic_cloud, R.drawable.ic_sun_yellow};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,22 +39,24 @@ public class WeatherMainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recycler_view_main_fragment_recent_days);
+        RecyclerView recyclerViewMain = view.findViewById(R.id.recycler_view_main_fragment_recent_days);
 
-        stringArray1 = getResources().getStringArray(R.array.day_main);
-        stringArray2 = getResources().getStringArray(R.array.weather_main);
-        stringArray3 = getResources().getStringArray(R.array.temperature_main);
+        String[] stringArrayMainDays = getResources().getStringArray(R.array.day_main);
+        String[] stringArrayMainWeather = getResources().getStringArray(R.array.weather_main);
+        String[] stringArrayMainTemperature = getResources().getStringArray(R.array.temperature_main);
 
-        RecyclerAdapterMain recyclerAdapterMain = new RecyclerAdapterMain(getActivity(), stringArray1, stringArray2, stringArray3, images);
-        recyclerView.setAdapter(recyclerAdapterMain);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        RecyclerAdapterMain recyclerAdapterMain = new RecyclerAdapterMain(requireContext(), stringArrayMainDays, stringArrayMainWeather, stringArrayMainTemperature, imagesAirCloudSun);
+        recyclerViewMain.setAdapter(recyclerAdapterMain);
+        recyclerViewMain.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        if (requireContext() instanceof MainFragmentCallback) {
+            mainFragmentCallback = (MainFragmentCallback) requireContext();
+        }
 
         LinearLayout linearLayoutMainMore = view.findViewById(R.id.linearLayout_main_fragment_more_details);
-        linearLayoutMainMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TabLayout tabLayout = getActivity().findViewById(R.id.tab_layout_main_activity_switch_fragments);
-                tabLayout.selectTab(tabLayout.getTabAt(1));
+        linearLayoutMainMore.setOnClickListener(view1 -> {
+            if (mainFragmentCallback != null) {
+                mainFragmentCallback.navigateToSecondFragment();
             }
         });
 

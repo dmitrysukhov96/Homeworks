@@ -1,4 +1,4 @@
-package com.dmitrysukhov.thirdhomework;
+package com.dmitrysukhov.thirdhomework.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,41 +9,43 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dmitrysukhov.thirdhomework.R;
+
 public class RecyclerAdapterDetails extends RecyclerView.Adapter<RecyclerAdapterDetails.SecondViewHolder>{
 
     Context context;
-    private final String[] stringArray1;
-    private final String[] stringArray2;
-    private final String[] stringArray3;
-    int[] images;
+    private final String[] stringArrayDetailsCardsTime;
+    private final String[] stringArrayDetailsCardsWeather;
+    private final String[] stringArrayDetailsCardsWindSpeed;
+    int[] imagesDetailsCards;
 
     public RecyclerAdapterDetails(Context ct, String[] s1, String[] s2, String[] s3, int[] img) {
         context = ct;
-        stringArray1 = s1;
-        stringArray2 = s2;
-        stringArray3 = s3;
-        images = img;
+        stringArrayDetailsCardsTime = s1;
+        stringArrayDetailsCardsWeather = s2;
+        stringArrayDetailsCardsWindSpeed = s3;
+        imagesDetailsCards = img;
     }
 
     @NonNull
     @Override
     public RecyclerAdapterDetails.SecondViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View view = inflater.inflate(R.layout.cardview_weather, viewGroup, false);
         return new RecyclerAdapterDetails.SecondViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerAdapterDetails.SecondViewHolder viewHolder, final int position) {
-        viewHolder.textViewDetailsTime.setText(stringArray1[position]);
-        viewHolder.textViewDetailsWeather.setText(stringArray2[position]);
-        viewHolder.textViewDetailsWindSpeed.setText(stringArray3[position]);
-        viewHolder.imageViewCardDetails.setImageResource(images[position]);
+        viewHolder.textViewDetailsTime.setText(stringArrayDetailsCardsTime[position]);
+        viewHolder.textViewDetailsWeather.setText(stringArrayDetailsCardsWeather[position]);
+        viewHolder.textViewDetailsWindSpeed.setText(stringArrayDetailsCardsWindSpeed[position]);
+        viewHolder.imageViewCardDetails.setImageResource(imagesDetailsCards[position]);
     }
 
     @Override
     public int getItemCount() {
-        return images.length;
+        return imagesDetailsCards.length;
     }
     public static class SecondViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewDetailsTime;

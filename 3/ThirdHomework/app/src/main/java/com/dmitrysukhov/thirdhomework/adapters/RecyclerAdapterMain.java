@@ -1,4 +1,4 @@
-package com.dmitrysukhov.thirdhomework;
+package com.dmitrysukhov.thirdhomework.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,36 +10,37 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dmitrysukhov.thirdhomework.R;
+
 public class RecyclerAdapterMain extends RecyclerView.Adapter<RecyclerAdapterMain.FirstViewHolder> {
 
     Context context;
-    private final String[] stringArray1;
-    private final String[] stringArray2;
-    private final String[] stringArray3;
+    private final String[] stringArrayAdapterDays;
+    private final String[] stringArrayAdapterWeather;
+    private final String[] stringArrayAdapterTemperature;
     int[] images;
-    private String textCircle = " • ";
 
     public RecyclerAdapterMain(Context ct, String[] s1, String[] s2, String[] s3, int[] img) {
         context = ct;
-        stringArray1 = s1;
-        stringArray2 = s2;
-        stringArray3 = s3;
+        stringArrayAdapterDays = s1;
+        stringArrayAdapterWeather = s2;
+        stringArrayAdapterTemperature = s3;
         images = img;
     }
 
     @NonNull
     @Override
     public FirstViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View view = inflater.inflate(R.layout.cardview_recent, viewGroup, false);
         return new FirstViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(FirstViewHolder viewHolder, final int position) {
-        viewHolder.textViewDay.setText(stringArray1[position]);
-        viewHolder.textViewState.setText(textCircle+stringArray2[position]);
-        viewHolder.textViewTemperature.setText(stringArray3[position]);
+        viewHolder.textViewDay.setText(stringArrayAdapterDays[position]);
+        viewHolder.textViewState.setText(String.format("%s%s", viewHolder.textViewState.getText().toString(), stringArrayAdapterWeather[position]));
+        viewHolder.textViewTemperature.setText(stringArrayAdapterTemperature[position]);
         viewHolder.iconWeather.setImageResource(images[position]);
     }
 

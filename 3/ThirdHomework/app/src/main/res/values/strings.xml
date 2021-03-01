@@ -4,21 +4,22 @@
     <string name="main">Main</string>
     <string name="nav_drawer_open">Navigation drawer opened</string>
     <string name="nav_drawer_close">Navigation drawer closed</string>
-    <string name="temperature">2</string>
+    <string name="temperature">-2</string>
     <string name="celsius">℃</string>
-    <string name="minus">-</string>
     <string name="state">Ясно</string>
     <string name="ikv41">ИКВ 41</string>
     <string name="more">Подробнее</string>
-    <string name="sun">sun</string>
     <string name="sunrise_example">Восход 06:55</string>
     <string name="sunset_example">Закат 17:28</string>
     <string name="air_quality_index">Индекс качества воздуха</string>
     <string name="example_air_quality">41</string>
     <string name="info_by">Данные предоставлены</string>
-    <string name="accuweather">accuweather</string>
-    <string name="string_accuweather" />
-    <string name="weatherapp">WeatherApp</string>
+    <string name="weather_app">WeatherApp</string>
+    <string name="turn_on_gps_please">Пожалуйста, включите геолокацию</string>
+    <string name="text_circle">" • "</string>
+    <string name="accuweather_logo">accuweather logo</string>
+    <string name="main_activity">Main Activity</string>
+    <string name="settings_activity">Settings Activity</string>
 
     <string-array name="day_main">
         <item>Сегодня</item>

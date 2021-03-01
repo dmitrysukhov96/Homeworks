@@ -12,15 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dmitrysukhov.thirdhomework.GridViewAdapter;
+import com.dmitrysukhov.thirdhomework.adapters.GridViewAdapter;
 import com.dmitrysukhov.thirdhomework.R;
-import com.dmitrysukhov.thirdhomework.RecyclerAdapterDetails;
+import com.dmitrysukhov.thirdhomework.adapters.RecyclerAdapterDetails;
 
 public class WeatherDetailsFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private String[] stringArray1, stringArray2, stringArray3;
-    int[] images = {R.drawable.ic_sun_yellow,R.drawable.ic_sun_yellow,R.drawable.ic_sun_yellow,R.drawable.ic_moon_yellow,R.drawable.ic_moon_yellow};
+    int[] imagesSunMoon = {R.drawable.ic_sun_yellow,R.drawable.ic_sun_yellow,R.drawable.ic_sun_yellow,R.drawable.ic_moon_yellow,R.drawable.ic_moon_yellow};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,17 +34,17 @@ public class WeatherDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recycler_view_details_weather);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view_details_weather);
 
-        stringArray1 = getResources().getStringArray(R.array.time_details);
-        stringArray2 = getResources().getStringArray(R.array.weather_details);
-        stringArray3 = getResources().getStringArray(R.array.wind_speed_details);
+        String[] stringArrayDetailsTime = getResources().getStringArray(R.array.time_details);
+        String[] stringArrayDetailsWeather = getResources().getStringArray(R.array.weather_details);
+        String[] stringArrayDetailsWindSpeed = getResources().getStringArray(R.array.wind_speed_details);
 
-        RecyclerAdapterDetails recyclerAdapterDetails = new RecyclerAdapterDetails(getActivity(), stringArray1, stringArray2, stringArray3, images);
+        RecyclerAdapterDetails recyclerAdapterDetails = new RecyclerAdapterDetails(requireContext(), stringArrayDetailsTime, stringArrayDetailsWeather, stringArrayDetailsWindSpeed, imagesSunMoon);
         recyclerView.setAdapter(recyclerAdapterDetails);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false));
         GridView gridview = getView().findViewById(R.id.grid_view_details);
         if (gridview!=null){
-        gridview.setAdapter(new GridViewAdapter(getActivity()));}
+        gridview.setAdapter(new GridViewAdapter(requireContext()));}
     }
 }

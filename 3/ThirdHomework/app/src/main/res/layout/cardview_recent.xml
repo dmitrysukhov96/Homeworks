@@ -6,10 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_margin="5dp"
     android:background="@color/transparent"
     card_view:cardBackgroundColor="@color/transparent"
-    card_view:cardElevation="0dp">
+    card_view:cardElevation="@dimen/card_no_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_card_view_for_main"
@@ -21,7 +20,7 @@
             android:id="@+id/image_view_card_view_icon_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/standard_margin"
             android:src="@drawable/ic_sun_yellow"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@id/text_view_card_day"
@@ -32,7 +31,7 @@
             android:id="@+id/text_view_card_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/standard_margin"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/image_view_card_view_icon_weather"
             card_view:layout_constraintTop_toTopOf="parent"
@@ -45,13 +44,14 @@
             android:textColor="@color/white"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/text_view_card_day"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:text="@string/text_circle"/>
 
         <TextView
             android:id="@+id/text_view_card_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="@dimen/standard_margin"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"

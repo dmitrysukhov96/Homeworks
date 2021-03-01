@@ -1,4 +1,4 @@
-package com.dmitrysukhov.thirdhomework;
+package com.dmitrysukhov.thirdhomework.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,21 +19,7 @@ public class ScreenSlidePagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Fragment fragment;
-        switch (position) {
-            case 0: {
-                fragment = new WeatherMainFragment();
-                break;
-            }
-            case 1: {
-                fragment = new WeatherDetailsFragment();
-                break;
-            }
-            default: {
-                fragment = new WeatherMainFragment();
-            }
-        }
-        return fragment;
+        return position==0 ? new WeatherMainFragment(): new WeatherDetailsFragment();
     }
 
     @Override

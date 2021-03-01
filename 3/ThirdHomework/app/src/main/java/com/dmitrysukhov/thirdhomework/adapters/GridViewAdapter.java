@@ -1,15 +1,16 @@
-package com.dmitrysukhov.thirdhomework;
+package com.dmitrysukhov.thirdhomework.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.dmitrysukhov.thirdhomework.R;
+
 public class GridViewAdapter extends BaseAdapter {
-    private Context mContext;
+    private final Context mContext;
     public String[] gridViewDetailsNames = {"Ощущается","Влажность","Вероятность дождя","ДАВЛЕНИЕ","Скорость ветра","Индекс УФ"};
     public String[] gridViewDetailsValues = {"-2℃","50%","0%","1031,00hPa","3,7 км/ч","2"};
 
@@ -33,7 +34,6 @@ public class GridViewAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View grid;
         if (view == null) {
-            grid = new View(mContext);
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
             grid = inflater.inflate(R.layout.cell_grid_details_fragment_text_values, viewGroup, false);
         } else {

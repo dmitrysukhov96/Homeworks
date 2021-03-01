@@ -4,12 +4,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     card_view:cardBackgroundColor="@color/transparent"
-    card_view:cardElevation="0dp">
+    android:layout_margin="@dimen/standard_margin"
+    card_view:cardElevation="@dimen/card_no_elevation">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/standard_margin"/>
 
         <TextView
             android:id="@+id/text_view_card_details_weather"
@@ -32,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_sun_yellow"
-            android:layout_margin="10dp"/>
+            android:layout_margin="@dimen/standard_margin"/>
 
         <TextView
             android:id="@+id/text_view_card_details_wind_speed"
