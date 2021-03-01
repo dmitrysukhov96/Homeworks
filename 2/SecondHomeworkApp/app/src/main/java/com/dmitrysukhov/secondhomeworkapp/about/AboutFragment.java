@@ -23,10 +23,16 @@ public class AboutFragment extends DialogFragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
         if (context instanceof AboutFragmentCallback) {
             callback = (AboutFragmentCallback) context;
-            super.onAttach(context);
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callback = null;
     }
 
     @NonNull

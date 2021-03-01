@@ -19,7 +19,6 @@ public class HostFragment extends Fragment implements FragmentCallback {
     public static final String TEXT_FROM_FIRST_FRAGMENT_TAG = "text_from_first_fragment";
     public static final String TEXT_FROM_SECOND_FRAGMENT_TAG = "text_from_second_fragment";
 
-
     @Override
     public void sendTextToAnotherFragment(String tagOfFragmentSender, String text) {
         switch (tagOfFragmentSender) {
@@ -39,7 +38,6 @@ public class HostFragment extends Fragment implements FragmentCallback {
                 getChildFragmentManager().beginTransaction().replace(R.id.framelayout_host_container, firstFragment, FirstFragment.FIRST_FRAGMENT_TAG).commit();
                 break;
             }
-
         }
     }
 
@@ -51,12 +49,12 @@ public class HostFragment extends Fragment implements FragmentCallback {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState == null) {
             getChildFragmentManager().beginTransaction()
                     .add(R.id.framelayout_host_container, new FirstFragment(), FirstFragment.FIRST_FRAGMENT_TAG)
                     .commit();
         }
-        super.onViewCreated(view, savedInstanceState);
     }
 
     public void showFragment(String tagOfFragment) {

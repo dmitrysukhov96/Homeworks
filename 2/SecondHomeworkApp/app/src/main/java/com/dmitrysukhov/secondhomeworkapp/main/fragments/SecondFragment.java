@@ -28,6 +28,7 @@ public class SecondFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
             String textFromFirstFragment = bundle.getString(HostFragment.TEXT_FROM_FIRST_FRAGMENT_TAG);
@@ -47,6 +48,5 @@ public class SecondFragment extends Fragment {
                 }
             }
         });
-        super.onViewCreated(view, savedInstanceState);
     }
 }

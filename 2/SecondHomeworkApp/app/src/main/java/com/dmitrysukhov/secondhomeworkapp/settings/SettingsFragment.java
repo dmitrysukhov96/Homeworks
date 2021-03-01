@@ -39,6 +39,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         loginEditTextPreference = getPreferenceManager().findPreference(loginTag);
         showLoginCheckBoxPreference = getPreferenceManager().findPreference(showLoginTag);
@@ -48,7 +49,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         oldShowLoginValue = showLoginCheckBoxPreference.isChecked();
         oldNightModeValue = nightModeSwitchPreference.isChecked();
         oldWhoWillListChosenValue = whoWillSeeNumbersListPreference.getValue();
-        super.onViewCreated(view, savedInstanceState);
     }
 
     public String returnResults() {
