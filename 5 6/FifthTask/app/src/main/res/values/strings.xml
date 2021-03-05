@@ -13,4 +13,5 @@
     <string name="on_restart">onRestart</string>
     <string name="fab">fab</string>
     <string name="authority">com.dmitrysukhov.fifthtask.fileprovider</string>
+    <string name="image_type">image/*</string>
 </resources>

@@ -18,17 +18,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class FileProcessing implements MainActivity.MainActivityCallback {
+public class FileProcessing {
 
     private static final String FILE_NAME = "lifecycle_logs.txt";
-    private String currentPhotoPath;
+    private static String currentPhotoPath;
     public static final int CAMERA_REQUEST_CODE = 52;
     public static final int GALLERY_REQUEST_CODE = 25;
     private static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
 
-    @Override
-    public File createImageFile(Context context) throws IOException {
-        // Create an image file name
+    public static File createImageFile(Context context) throws IOException {
         String timeStamp = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -37,8 +35,7 @@ public class FileProcessing implements MainActivity.MainActivityCallback {
         return image;
     }
 
-    @Override
-    public void addLineToLogFile(String text, Context context) {
+    public static void addLineToLogFile(String text, Context context) {
         File lifecycleLogsFile = new File(context.getFilesDir(), FILE_NAME);
         if (!lifecycleLogsFile.exists()) {
             try {
@@ -57,8 +54,7 @@ public class FileProcessing implements MainActivity.MainActivityCallback {
         }
     }
 
-    @Override
-    public void shareLogFile(Context context) {
+    public static void shareLogFile(Context context) {
         File lifecycleLogsFile = new File(context.getFilesDir(), FILE_NAME);
         if (!lifecycleLogsFile.exists()) {
             Toast.makeText(context, context.getString(R.string.file_not_found), Toast.LENGTH_LONG).show();
@@ -80,8 +76,7 @@ public class FileProcessing implements MainActivity.MainActivityCallback {
         }
     }
 
-    @Override
-    public String getCurrentPhotoPath() {
+    public static String getCurrentPhotoPath() {
         return currentPhotoPath;
     }
 }
