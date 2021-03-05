@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">FifthTask</string>
+    <string name="file_not_found">Файл не существует</string>
+    <string name="intent_type">text/*</string>
+    <string name="chooser_title">Share file with…</string>
+    <string name="file_cant_be_shared">\"The selected file can\'t be shared: \"</string>
+    <string name="on_create">onCreate</string>
+    <string name="on_start">onStart</string>
+    <string name="on_resume">onResume</string>
+    <string name="on_pause">onPause</string>
+    <string name="on_stop">onStop</string>
+    <string name="on_destroy">onDestroy</string>
+    <string name="on_restart">onRestart</string>
+    <string name="fab">fab</string>
+    <string name="authority">com.dmitrysukhov.fifthtask.fileprovider</string>
+</resources>
