@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Collections Speed Test</string>
+    <string name="array_list">ArrayList</string>
+    <string name="linked_list">LinkedList</string>
+    <string name="copy_on_write_array_list">CopyOnWrite…</string>
+    <string name="add_mid">AddMid</string>
+    <string name="remove_mid">RemoveMid</string>
+    <string name="search">Search</string>
+    <string name="calculate">Calculate</string>
+    <string name="addMidtoArrayList">addMidtoArrayList</string>
+    <string name="ms">ms</string>
+</resources>
