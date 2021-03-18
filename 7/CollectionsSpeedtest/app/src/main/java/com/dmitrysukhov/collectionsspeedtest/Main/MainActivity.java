@@ -1,18 +1,14 @@
 package com.dmitrysukhov.collectionsspeedtest.Main;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.dmitrysukhov.collectionsspeedtest.R;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements MainContract.ViewContract {
 
@@ -26,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private TextView textViewArrayListSearch;
     private TextView textViewLinkedListSearch;
     private TextView textViewCopyOnWriteArrayListSearch;
+    private MenuItem calculateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_button_calculate) {
+            calculateButton = item;
+            calculateButton.setEnabled(false);
             mainPresenter.onButtonWasClicked();
         }
         return super.onOptionsItemSelected(item);
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void showTimeInMillis(byte operationTag, int resultInMillis) {
-        Log.i(MainPresenter.TAG,"operationTag is "+operationTag+" and resultInMillis is "+resultInMillis);
         switch (operationTag) {
             case (MainPresenter.ADD_MID_ARRAY_LIST_TAG): {
                 runOnUiThread(() -> textViewArrayListAddMid.setText(String.valueOf(resultInMillis)));
@@ -101,5 +99,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 break;
             }
         }
+        runOnUiThread(() -> {
+            calculateButton.setEnabled(textViewArrayListAddMid.getText() != "" & textViewLinkedListAddMid.getText() != ""
+                    & textViewCopyOnWriteArrayListAddMid.getText() != "" & textViewArrayListRemoveMid.getText() != ""
+                    & textViewLinkedListRemoveMid.getText() != "" & textViewCopyOnWriteArrayListRemoveMid.getText() != ""
+                    & textViewArrayListSearch.getText() != "" & textViewLinkedListSearch.getText() != ""
+                    & textViewCopyOnWriteArrayListSearch.getText() != "");
+        });
     }
 }

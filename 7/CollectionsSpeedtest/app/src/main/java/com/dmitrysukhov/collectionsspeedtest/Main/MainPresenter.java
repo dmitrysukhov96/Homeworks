@@ -3,8 +3,7 @@ package com.dmitrysukhov.collectionsspeedtest.Main;
 public class MainPresenter implements MainContract.PresenterContract {
 
     public static final String TAG = "myLogTag";
-    private MainContract.ModelContract mainModel;
-    private MainContract.ViewContract mainView;
+    private final MainContract.ViewContract mainView;
     public static final byte ADD_MID_ARRAY_LIST_TAG = 11;
     public static final byte ADD_MID_LINKED_LIST_TAG = 12;
     public static final byte ADD_MID_COPY_ON_WRITE_ARRAY_LIST_TAG = 13;
@@ -17,7 +16,7 @@ public class MainPresenter implements MainContract.PresenterContract {
 
     @Override
     public void onButtonWasClicked() {
-        mainModel = new MainModel(this);
+        MainContract.ModelContract mainModel = new MainModel(this);
         mainModel.calculateCollectionsSpeed();
     }
 
