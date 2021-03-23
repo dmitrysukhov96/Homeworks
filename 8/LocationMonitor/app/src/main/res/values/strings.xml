@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Location Monitor</string>
+    <string name="longitude">Долгота:</string>
+    <string name="latitude">Широта:</string>
+    <string name="stop_service">Stop service</string>
+    <string name="start_service">Start service</string>
+    <string name="service_is_launched">Service is launched</string>
+    <string name="gps_rationale">To work correctly, the app requires GPS permission.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="please_turn_on_gps">Please turn on GPS</string>
+    <string name="yes">Yes</string>
+    <string name="no_thanks">No, thanks</string>
+    <string name="notification_channel_location">notification_channel_location</string>
+    <string name="location_monitor_service">Location Monitor Service</string>
+    <string name="new_location">\"New location: \"</string>
+</resources>
