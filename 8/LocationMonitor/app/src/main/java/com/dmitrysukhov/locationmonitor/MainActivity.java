@@ -1,6 +1,7 @@
 package com.dmitrysukhov.locationmonitor;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -19,7 +21,10 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.location.LocationServices;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferencesHelper.getInstance(this);
-        ((Button) findViewById(R.id.button_main_stop_service)).setText(getString(R.string.start_service));
+        if (isServiceRunning())
+            ((Button) findViewById(R.id.button_main_stop_service)).setText(getString(R.string.stop_service));
+        else
+            ((Button) findViewById(R.id.button_main_stop_service)).setText(getString(R.string.start_service));
 
         ArrayList<MyLocation> myLocationArrayList = new ArrayList<>();
         RecyclerView recyclerView = findViewById(R.id.recycler_view_main_locations);
@@ -80,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             if (arePermissionsGranted()) {
                 if (isGpsOn()) {
                     if (text.equals(getString(R.string.stop_service))) {
-                        stopService(new Intent(MainActivity.this, LocationMonitorService.class));
+                        stopService(new Intent(this, LocationMonitorService.class));
                         buttonStopStartService.setText(R.string.start_service);
                     } else if (text.equals(getString(R.string.start_service))) {
                         startMyLocationMonitorService();
@@ -150,5 +158,15 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.yes, (dialog, which) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                 ).setNegativeButton(R.string.no_thanks, null)
                 .show();
+    }
+
+    private boolean isServiceRunning() {
+        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> services = activityManager.getRunningServices(Integer.MAX_VALUE);
+        boolean isServiceRunning = false;
+        for (int i = 0; i < services.size(); i++) {
+            if (services.get(i).service.getClassName().equals(LocationMonitorService.CLASS_NAME));
+                isServiceRunning = true;
+        }return isServiceRunning;
     }
 }

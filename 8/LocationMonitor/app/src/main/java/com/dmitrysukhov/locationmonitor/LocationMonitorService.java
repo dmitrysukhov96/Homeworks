@@ -9,6 +9,7 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -31,6 +32,7 @@ public class LocationMonitorService extends Service implements LocationListener 
 
     private final String NOTIFICATION_CHANNEL_ID = "notification_channel_location";
     private BroadcastReceiver broadcastReceiverOfService;
+    public static final String CLASS_NAME = "com.dmitrysukhov.locationmonitor.LocationMonitorService";
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -54,6 +56,7 @@ public class LocationMonitorService extends Service implements LocationListener 
                 }
             }
         };
+        registerReceiver(broadcastReceiverOfService, new IntentFilter(MainActivity.BROADCAST_ACTION));
     }
 
     @Override
