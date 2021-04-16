@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/profileInfoFragment"
-        android:name="com.dmitrysukhov.loginapp.ProfileFragment"
+        android:name="com.dmitrysukhov.loginapp.ui.ProfileFragment"
         android:label="fragment_profile_info"
         tools:layout="@layout/fragment_profile_info">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainScreenFragment"
-        android:name="com.dmitrysukhov.loginapp.MainScreenFragment"
+        android:name="com.dmitrysukhov.loginapp.ui.MainScreenFragment"
         android:label="fragment_main_screen"
         tools:layout="@layout/fragment_main_screen">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.dmitrysukhov.loginapp.LoginFragment"
+        android:name="com.dmitrysukhov.loginapp.ui.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.dmitrysukhov.loginapp.SettingsFragment"
+        android:name="com.dmitrysukhov.loginapp.ui.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings">
         <action

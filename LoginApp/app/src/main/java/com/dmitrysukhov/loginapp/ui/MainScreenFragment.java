@@ -1,4 +1,4 @@
-package com.dmitrysukhov.loginapp;
+package com.dmitrysukhov.loginapp.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +15,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
+import com.dmitrysukhov.loginapp.viewmodel.MyViewModel;
+import com.dmitrysukhov.loginapp.R;
 import com.dmitrysukhov.loginapp.databinding.FragmentMainScreenBinding;
 import com.dmitrysukhov.loginapp.databinding.NavViewMainHeaderBinding;
 
@@ -51,7 +53,7 @@ public class MainScreenFragment extends Fragment {
         }
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(requireActivity(), fragmentMainScreenBinding.drawerLayoutMain,
-                (Toolbar) fragmentMainScreenBinding.toolbar.getRoot(),R.string.opened, R.string.closed);
+                (Toolbar) fragmentMainScreenBinding.toolbar.getRoot(), R.string.opened, R.string.closed);
         actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();

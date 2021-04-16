@@ -1,4 +1,4 @@
-package com.dmitrysukhov.loginapp;
+package com.dmitrysukhov.loginapp.database;
 
 import android.net.Uri;
 

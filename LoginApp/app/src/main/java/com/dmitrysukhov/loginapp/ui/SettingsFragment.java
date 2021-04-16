@@ -1,4 +1,4 @@
-package com.dmitrysukhov.loginapp;
+package com.dmitrysukhov.loginapp.ui;
 
 import android.os.Bundle;
 
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.dmitrysukhov.loginapp.R;
 import com.dmitrysukhov.loginapp.databinding.FragmentSettingsBinding;
 
 

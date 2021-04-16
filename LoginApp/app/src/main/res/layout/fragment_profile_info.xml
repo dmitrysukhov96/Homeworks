@@ -6,14 +6,14 @@
     <data>
         <variable
             name="profileFragment"
-            type="com.dmitrysukhov.loginapp.ProfileFragment" />
+            type="com.dmitrysukhov.loginapp.ui.ProfileFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ProfileFragment">
+        tools:context=".ui.ProfileFragment">
 
         <include
             android:id="@+id/toolbar_profile"
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/password"
-                android:inputType="textVisiblePassword|textNoSuggestions" />
+                android:inputType="textPassword" />
 
             <EditText
                 android:id="@+id/editText_profile_confirm_password"

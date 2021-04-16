@@ -6,7 +6,7 @@
     <data>
         <variable
             name="user"
-            type="com.dmitrysukhov.loginapp.User" />
+            type="com.dmitrysukhov.loginapp.database.User" />
     </data>
 
     <LinearLayout

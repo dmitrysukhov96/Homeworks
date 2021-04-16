@@ -1,6 +1,5 @@
-package com.dmitrysukhov.loginapp;
+package com.dmitrysukhov.loginapp.database;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;

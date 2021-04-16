@@ -1,4 +1,4 @@
-package com.dmitrysukhov.loginapp;
+package com.dmitrysukhov.loginapp.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.dmitrysukhov.loginapp.viewmodel.MyViewModel;
+import com.dmitrysukhov.loginapp.R;
+import com.dmitrysukhov.loginapp.database.User;
+import com.dmitrysukhov.loginapp.database.UserDatabase;
 import com.dmitrysukhov.loginapp.databinding.FragmentLoginBinding;
 
 public class LoginFragment extends Fragment {

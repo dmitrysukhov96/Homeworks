@@ -1,19 +1,11 @@
-package com.dmitrysukhov.loginapp;
+package com.dmitrysukhov.loginapp.viewmodel;
 
 import android.content.Context;
-import android.net.Uri;
-import android.os.Environment;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import com.dmitrysukhov.loginapp.database.User;
+import com.dmitrysukhov.loginapp.database.UserDatabase;
 
 public class MyViewModel extends ViewModel {
     private UserDatabase db;
