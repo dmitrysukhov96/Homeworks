@@ -76,18 +76,64 @@ public class ProfileFragment extends Fragment {
     }
 
     public void onSaveButtonClick() {
-        if (validationWasSuccessful()) {
-            User user = myViewModel.getCurrentUser();
-            user.firstName = profileBinding.editTextProfileFirstName.getText().toString();
-            user.lastName = profileBinding.editTextProfileLastName.getText().toString();
-            user.login = profileBinding.editTextProfileLogin.getText().toString();
-            user.password = profileBinding.editTextProfilePassword.getText().toString();
-            if (imageUri != null) {
-                user.imageUri = String.valueOf(imageUri);
+        if (getArguments().getBoolean("update")) {
+            if (validationWasSuccessful()) {
+                User user = myViewModel.getCurrentUser();
+                String oldLogin = user.login;
+                if (!oldLogin.equals(profileBinding.editTextProfileLogin.getText().toString())) {
+                    //check if login exists
+                    User userForCheckLogin = userDatabase.userDao().getUserByLogin(
+                            profileBinding.editTextProfileLogin.getText().toString());
+                    if (userForCheckLogin == null) {
+                        user.firstName = profileBinding.editTextProfileFirstName.getText().toString();
+                        user.lastName = profileBinding.editTextProfileLastName.getText().toString();
+                        user.login = profileBinding.editTextProfileLogin.getText().toString();
+                        user.password = profileBinding.editTextProfilePassword.getText().toString();
+                        if (imageUri != null) {
+                            user.imageUri = String.valueOf(imageUri);
+                        }
+                        myViewModel.saveCurrentUser(user);
+                        userDatabase.userDao().insertUser(user);
+                        navController.navigate(ProfileFragmentDirections.actionProfileInfoFragmentToMainScreenFragment());
+                    } else {
+                        profileBinding.editTextProfileLogin.setError("Such login is already exists");
+                    }
+                } else {
+                    user.firstName = profileBinding.editTextProfileFirstName.getText().toString();
+                    user.lastName = profileBinding.editTextProfileLastName.getText().toString();
+                    user.login = profileBinding.editTextProfileLogin.getText().toString();
+                    user.password = profileBinding.editTextProfilePassword.getText().toString();
+                    if (imageUri != null) {
+                        user.imageUri = String.valueOf(imageUri);
+                    }
+                    myViewModel.saveCurrentUser(user);
+                    userDatabase.userDao().insertUser(user);
+                    navController.navigate(ProfileFragmentDirections.actionProfileInfoFragmentToMainScreenFragment());
+                }
+
             }
-            myViewModel.saveCurrentUser(user);
-            userDatabase.userDao().insertUser(user);
-            navController.navigate(ProfileFragmentDirections.actionProfileInfoFragmentToMainScreenFragment());
+        } else {
+            //if it's saving but not updating
+            if (validationWasSuccessful()) {
+                //check if login exists
+                User userForCheckLogin = userDatabase.userDao().getUserByLogin(
+                        profileBinding.editTextProfileLogin.getText().toString());
+                if (userForCheckLogin == null) {
+                    User user = myViewModel.getCurrentUser();
+                    user.firstName = profileBinding.editTextProfileFirstName.getText().toString();
+                    user.lastName = profileBinding.editTextProfileLastName.getText().toString();
+                    user.login = profileBinding.editTextProfileLogin.getText().toString();
+                    user.password = profileBinding.editTextProfilePassword.getText().toString();
+                    if (imageUri != null) {
+                        user.imageUri = String.valueOf(imageUri);
+                    }
+                    myViewModel.saveCurrentUser(user);
+                    userDatabase.userDao().insertUser(user);
+                    navController.navigate(ProfileFragmentDirections.actionProfileInfoFragmentToMainScreenFragment());
+                } else {
+                    profileBinding.editTextProfileLogin.setError("Such login is already exists");
+                }
+            }
         }
     }
 
@@ -107,47 +153,48 @@ public class ProfileFragment extends Fragment {
                 } else {
                     profileBinding.editTextProfilePassword.setError(getString(R.string.password_must_contain));
                 }
-            }else profileBinding.editTextProfileLogin.setError(getString(R.string.login_must_contain));
-            }
-            return valid;
+            } else
+                profileBinding.editTextProfileLogin.setError(getString(R.string.login_must_contain));
         }
+        return valid;
+    }
 
-        private boolean checkLengthOfPassword () {
-            return profileBinding.editTextProfilePassword.getText().toString().length() > 7;
-        }
+    private boolean checkLengthOfPassword() {
+        return profileBinding.editTextProfilePassword.getText().toString().length() > 7;
+    }
 
-        public boolean isThereNoEmptySpaces () {
-            if (profileBinding.editTextProfileFirstName.getText().toString().trim().equalsIgnoreCase("")) {
-                profileBinding.editTextProfileFirstName.setError(canNotBeBlank);
-                return false;
-            } else if (profileBinding.editTextProfileLastName.getText().toString().trim().equalsIgnoreCase("")) {
-                profileBinding.editTextProfileLastName.setError(canNotBeBlank);
-                return false;
-            } else if (profileBinding.editTextProfileLogin.getText().toString().trim().equalsIgnoreCase("")) {
-                profileBinding.editTextProfileLogin.setError(canNotBeBlank);
-                return false;
-            } else if (profileBinding.editTextProfilePassword.getText().toString().trim().equalsIgnoreCase("")) {
-                profileBinding.editTextProfilePassword.setError(canNotBeBlank);
-                return false;
-            } else if (profileBinding.editTextProfileConfirmPassword.getText().toString().trim().equalsIgnoreCase("")) {
-                profileBinding.editTextProfileConfirmPassword.setError(canNotBeBlank);
-                return false;
-            } else return true;
-        }
+    public boolean isThereNoEmptySpaces() {
+        if (profileBinding.editTextProfileFirstName.getText().toString().trim().equalsIgnoreCase("")) {
+            profileBinding.editTextProfileFirstName.setError(canNotBeBlank);
+            return false;
+        } else if (profileBinding.editTextProfileLastName.getText().toString().trim().equalsIgnoreCase("")) {
+            profileBinding.editTextProfileLastName.setError(canNotBeBlank);
+            return false;
+        } else if (profileBinding.editTextProfileLogin.getText().toString().trim().equalsIgnoreCase("")) {
+            profileBinding.editTextProfileLogin.setError(canNotBeBlank);
+            return false;
+        } else if (profileBinding.editTextProfilePassword.getText().toString().trim().equalsIgnoreCase("")) {
+            profileBinding.editTextProfilePassword.setError(canNotBeBlank);
+            return false;
+        } else if (profileBinding.editTextProfileConfirmPassword.getText().toString().trim().equalsIgnoreCase("")) {
+            profileBinding.editTextProfileConfirmPassword.setError(canNotBeBlank);
+            return false;
+        } else return true;
+    }
 
 
-        public void onAddImageClick () {
-            ImagePicker.Companion.with(this)
-                    .cropSquare()
-                    .start();
-        }
+    public void onAddImageClick() {
+        ImagePicker.Companion.with(this)
+                .cropSquare()
+                .start();
+    }
 
-        @Override
-        public void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data){
-            super.onActivityResult(requestCode, resultCode, data);
-            if (resultCode == RESULT_OK) {
-                imageUri = data.getData();
-                profileBinding.imageViewProfilePhoto.setImageURI(imageUri);
-            }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            imageUri = data.getData();
+            profileBinding.imageViewProfilePhoto.setImageURI(imageUri);
         }
     }
+}

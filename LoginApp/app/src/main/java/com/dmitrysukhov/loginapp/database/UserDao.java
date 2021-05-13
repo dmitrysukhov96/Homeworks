@@ -14,6 +14,9 @@ public interface UserDao {
     @Query("SELECT * from user WHERE login LIKE :sLogin AND password LIKE :sPassword LIMIT 1")
     User getUserByCredentials(String sLogin, String sPassword);
 
+    @Query("SELECT * from user WHERE login LIKE :sLogin LIMIT 1")
+    User getUserByLogin(String sLogin);
+
     @Query("SELECT * from user WHERE id LIKE :sId")
     List<User> getDataOfCurrentUser(int sId);
 
