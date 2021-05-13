@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
 }
+
+apply plugin: "androidx.navigation.safeargs"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -33,9 +36,8 @@ android {
 }
 
 dependencies {
-    def room_version = "2.2.6"
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-runtime:2.3.0"
+    annotationProcessor "androidx.room:room-compiler:2.3.0"
     implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'

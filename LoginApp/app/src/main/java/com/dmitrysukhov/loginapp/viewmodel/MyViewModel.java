@@ -12,6 +12,7 @@ public class MyViewModel extends ViewModel {
     private User currentUser;
 
     public User getCurrentUser() {
+        if (currentUser == null) currentUser = new User();
         return currentUser;
     }
 

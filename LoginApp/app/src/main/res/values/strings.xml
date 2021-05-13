@@ -18,5 +18,6 @@
     <string name="update">Update</string>
     <string name="opened">Opened</string>
     <string name="closed">Closed</string>
-    <string name="min_eight_char">Password must contain minimum 8 characters</string>
+    <string name="password_must_contain">Password must contain English letters and numbers and be 8–16 characters long</string>
+    <string name="login_must_contain">Login must contain lowercase English letters and numbers.</string>
 </resources>

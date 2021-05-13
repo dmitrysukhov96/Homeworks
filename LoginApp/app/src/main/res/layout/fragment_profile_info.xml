@@ -18,6 +18,9 @@
         <include
             android:id="@+id/toolbar_profile"
             layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_arrow"
             app:title="@string/app_name" />
 

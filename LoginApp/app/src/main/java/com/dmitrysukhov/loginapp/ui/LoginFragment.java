@@ -63,9 +63,10 @@ public class LoginFragment extends Fragment {
                 fragmentLoginBinding.editTextLoginFragmentPassword.getText().toString());
         if (user != null) {
             myViewModel.saveCurrentUser(user);
-            navController.navigate(R.id.mainScreenFragment);
+            navController.navigate(LoginFragmentDirections.actionLoginFragmentToMainScreenFragment());
         } else {
-            Toast.makeText(getActivity(),"Wrong login or password",Toast.LENGTH_LONG).show();
+            fragmentLoginBinding.editTextLoginFragmentLogin.setError("Wrong login or password");
+            fragmentLoginBinding.editTextLoginFragmentPassword.setError("Wrong login or password");
         }
     }}
 

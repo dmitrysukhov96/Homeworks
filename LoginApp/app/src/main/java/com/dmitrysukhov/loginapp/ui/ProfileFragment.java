@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -22,6 +23,8 @@ import com.dmitrysukhov.loginapp.databinding.FragmentProfileInfoBinding;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.regex.Pattern;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -52,81 +55,99 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         myViewModel = new ViewModelProvider(requireActivity()).get(MyViewModel.class);
         navController = Navigation.findNavController(view);
+        ((Toolbar) profileBinding.toolbarProfile.getRoot()).setNavigationIcon(R.drawable.ic_arrow);
+        ((Toolbar) profileBinding.toolbarProfile.getRoot()).setNavigationOnClickListener(v -> requireActivity().onBackPressed());
         canNotBeBlank = getString(R.string.can_not_be_blank);
         userDatabase = myViewModel.getUserDatabase(getActivity());
 
         if (getArguments().getBoolean("update")) {
-            if (myViewModel.getCurrentUser().imageUri != null)
+            if (myViewModel.getCurrentUser().imageUri != null) {
+                imageUri = Uri.parse(myViewModel.getCurrentUser().imageUri);
                 profileBinding.imageViewProfilePhoto.setImageURI(Uri.parse(myViewModel.getCurrentUser().imageUri));
+            }
             profileBinding.editTextProfileFirstName.setText(myViewModel.getCurrentUser().firstName);
             profileBinding.editTextProfileLastName.setText(myViewModel.getCurrentUser().lastName);
             profileBinding.editTextProfileLogin.setText(myViewModel.getCurrentUser().login);
+            profileBinding.editTextProfilePassword.setText(myViewModel.getCurrentUser().password);
+            profileBinding.editTextProfileConfirmPassword.setText(myViewModel.getCurrentUser().password);
         }
         String login = getArguments().getString("login");
         if (login != null) profileBinding.editTextProfileLogin.setText(login);
     }
 
     public void onSaveButtonClick() {
+        if (validationWasSuccessful()) {
+            User user = myViewModel.getCurrentUser();
+            user.firstName = profileBinding.editTextProfileFirstName.getText().toString();
+            user.lastName = profileBinding.editTextProfileLastName.getText().toString();
+            user.login = profileBinding.editTextProfileLogin.getText().toString();
+            user.password = profileBinding.editTextProfilePassword.getText().toString();
+            if (imageUri != null) {
+                user.imageUri = String.valueOf(imageUri);
+            }
+            myViewModel.saveCurrentUser(user);
+            userDatabase.userDao().insertUser(user);
+            navController.navigate(ProfileFragmentDirections.actionProfileInfoFragmentToMainScreenFragment());
+        }
+    }
+
+
+    private boolean validationWasSuccessful() {
+        boolean valid = false;
         if (isThereNoEmptySpaces()) {
-            if (checkLength()) {
-                User oldUser = myViewModel.getCurrentUser();
-                if (profileBinding.editTextProfilePassword.getText().toString().equals(profileBinding.editTextProfileConfirmPassword.getText().toString())) {
-                    User newUser = new User();
-                    newUser.firstName = profileBinding.editTextProfileFirstName.getText().toString();
-                    newUser.lastName = profileBinding.editTextProfileLastName.getText().toString();
-                    newUser.login = profileBinding.editTextProfileLogin.getText().toString();
-                    newUser.password = profileBinding.editTextProfilePassword.getText().toString();
-                    if (imageUri != null) {
-                        newUser.imageUri = String.valueOf(imageUri);
+            if (Pattern.matches("[a-z0-9]{0,20}", profileBinding.editTextProfileLogin.getText())) {
+                if (Pattern.matches("^[a-zA-Z0-9]{8,16}$", profileBinding.editTextProfilePassword.getText())) {
+                    if (profileBinding.editTextProfilePassword.getText().toString()
+                            .equals(profileBinding.editTextProfileConfirmPassword.getText().toString())) {
+                        valid = true;
+                    } else {
+                        profileBinding.editTextProfilePassword.setError(getString(R.string.password_mismatch));
+                        profileBinding.editTextProfileConfirmPassword.setError(getString(R.string.password_mismatch));
                     }
-                    if (oldUser != null) userDatabase.userDao().deleteUser(oldUser);
-                    myViewModel.saveCurrentUser(newUser);
-                    userDatabase.userDao().insertUser(newUser);
-                    navController.navigate(R.id.mainScreenFragment);
                 } else {
-                    profileBinding.editTextProfilePassword.setError(getString(R.string.password_mismatch));
-                    profileBinding.editTextProfileConfirmPassword.setError(getString(R.string.password_mismatch));
+                    profileBinding.editTextProfilePassword.setError(getString(R.string.password_must_contain));
                 }
-            }else profileBinding.editTextProfilePassword.setError(getString(R.string.min_eight_char));
+            }else profileBinding.editTextProfileLogin.setError(getString(R.string.login_must_contain));
+            }
+            return valid;
+        }
+
+        private boolean checkLengthOfPassword () {
+            return profileBinding.editTextProfilePassword.getText().toString().length() > 7;
+        }
+
+        public boolean isThereNoEmptySpaces () {
+            if (profileBinding.editTextProfileFirstName.getText().toString().trim().equalsIgnoreCase("")) {
+                profileBinding.editTextProfileFirstName.setError(canNotBeBlank);
+                return false;
+            } else if (profileBinding.editTextProfileLastName.getText().toString().trim().equalsIgnoreCase("")) {
+                profileBinding.editTextProfileLastName.setError(canNotBeBlank);
+                return false;
+            } else if (profileBinding.editTextProfileLogin.getText().toString().trim().equalsIgnoreCase("")) {
+                profileBinding.editTextProfileLogin.setError(canNotBeBlank);
+                return false;
+            } else if (profileBinding.editTextProfilePassword.getText().toString().trim().equalsIgnoreCase("")) {
+                profileBinding.editTextProfilePassword.setError(canNotBeBlank);
+                return false;
+            } else if (profileBinding.editTextProfileConfirmPassword.getText().toString().trim().equalsIgnoreCase("")) {
+                profileBinding.editTextProfileConfirmPassword.setError(canNotBeBlank);
+                return false;
+            } else return true;
+        }
+
+
+        public void onAddImageClick () {
+            ImagePicker.Companion.with(this)
+                    .cropSquare()
+                    .start();
+        }
+
+        @Override
+        public void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+            if (resultCode == RESULT_OK) {
+                imageUri = data.getData();
+                profileBinding.imageViewProfilePhoto.setImageURI(imageUri);
+            }
         }
     }
-
-    private boolean checkLength() {
-        return profileBinding.editTextProfilePassword.getText().toString().length() > 7;
-    }
-
-    public boolean isThereNoEmptySpaces() {
-        if (profileBinding.editTextProfileFirstName.getText().toString().trim().equalsIgnoreCase("")) {
-            profileBinding.editTextProfileFirstName.setError(canNotBeBlank);
-            return false;
-        } else if (profileBinding.editTextProfileLastName.getText().toString().trim().equalsIgnoreCase("")) {
-            profileBinding.editTextProfileLastName.setError(canNotBeBlank);
-            return false;
-        } else if (profileBinding.editTextProfileLogin.getText().toString().trim().equalsIgnoreCase("")) {
-            profileBinding.editTextProfileLogin.setError(canNotBeBlank);
-            return false;
-        } else if (profileBinding.editTextProfilePassword.getText().toString().trim().equalsIgnoreCase("")) {
-            profileBinding.editTextProfilePassword.setError(canNotBeBlank);
-            return false;
-        } else if (profileBinding.editTextProfileConfirmPassword.getText().toString().trim().equalsIgnoreCase("")) {
-            profileBinding.editTextProfileConfirmPassword.setError(canNotBeBlank);
-            return false;
-        } else return true;
-    }
-
-
-    public void onAddImageClick() {
-        ImagePicker.Companion.with(this)
-                .cropSquare()
-                .start();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            imageUri = data.getData();
-            profileBinding.imageViewProfilePhoto.setImageURI(imageUri);
-        }
-    }
-}

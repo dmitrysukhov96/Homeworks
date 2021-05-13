@@ -39,8 +39,10 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
+        ((Toolbar) fragmentSettingsBinding.toolbarSettings.getRoot()).setNavigationIcon(R.drawable.ic_arrow);
+        ((Toolbar) fragmentSettingsBinding.toolbarSettings.getRoot()).setNavigationOnClickListener(v -> requireActivity().onBackPressed());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity(), R.layout.my_settings_list_item, getResources().getStringArray(R.array.settings_entries));
-        fragmentSettingsBinding.listViewSettings.setAdapter(adapter); //TODO тут почему то падает
+        fragmentSettingsBinding.listViewSettings.setAdapter(adapter);
         fragmentSettingsBinding.listViewSettings.setOnItemClickListener((parent, view1, position, id) -> {
             if (position == 0) {
                 Bundle updateFlag = new Bundle();
@@ -48,12 +50,5 @@ public class SettingsFragment extends Fragment {
                 navController.navigate(R.id.profileInfoFragment,updateFlag);
             }
         });
-        ((Toolbar) fragmentSettingsBinding.toolbarSettings.getRoot()).setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SettingsFragment.this.requireActivity().onBackPressed();
-            }
-        });
-
     }
 }

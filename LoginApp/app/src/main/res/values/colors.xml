@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grapefruit">#E33700</color>
+    <color name="dark_grapefruit">#FFB62C00</color>
+    <color name="ucrop_color_toolbar">@color/grapefruit</color>
+    <color name="ucrop_color_statusbar">@color/dark_grapefruit</color>
+    <color name="ucrop_color_widget_active">@color/grapefruit</color>
 </resources>

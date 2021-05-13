@@ -57,13 +57,14 @@ public class MainScreenFragment extends Fragment {
         actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         fragmentMainScreenBinding.drawerLayoutMain.addDrawerListener(actionBarDrawerToggle);
         fragmentMainScreenBinding.navViewMain.setNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.drawer_menu_item_settings) {
-                navController.navigate(R.id.settingsFragment); //TODO не генерируется класс FragmentMainScreenDirections
+                navController.navigate(MainScreenFragmentDirections.actionMainScreenFragmentToSettingsFragment());
             } else if (item.getItemId() == R.id.drawer_menu_item_log_out) {
                 myViewModel.saveCurrentUser(null);
-                navController.navigate(R.id.loginFragment); //TODO не генерируется класс FragmentMainScreenDirections
+                navController.navigate(MainScreenFragmentDirections.actionMainScreenFragmentToLoginFragment());
             }
             item.setChecked(true);
             fragmentMainScreenBinding.drawerLayoutMain.closeDrawers();
